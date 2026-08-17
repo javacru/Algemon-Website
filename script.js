@@ -97,7 +97,7 @@ const els = {
   toasts: document.getElementById("toasts")
 };
 
-const API_BASE = "http://localhost:3001";
+const API_BASE = "";
 const STAFF_ROLES = new Set(["admin", "teacher"]);
 
 function showView(name) {
