@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I.S.L.A. Learning Adventure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-view public-view active" id="home-view">
+    <header class="public-nav">
+      <a class="brand public-brand" href="#home" aria-label="I.S.L.A. homepage">
+        <div class="brand-mark">IS</div>
+        <div>
+          <h1>I.S.L.A.</h1>
+          <p>Instructional Sipnayan Learning Adventure</p>
+        </div>
+      </a>
+      <nav class="public-links" aria-label="Public navigation">
+        <a href="#home">Home</a>
+        <a href="#download">Download</a>
+        <a href="#login">Admin Login</a>
+      </nav>
+    </header>
+
+    <main class="landing-main">
+      <section class="hero-section" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Grade 3 Math Adventure</p>
+          <h2>Instructional Sipnayan Learning Adventure</h2>
+          <p>
+            I.S.L.A. is a 2D mobile island adventure math game for Grade 3 students,
+            built in Godot 4 to make practice feel playful, structured, and rewarding.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#download">Download APK</a>
+            <a class="btn btn-light" href="#login">Admin Login</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Game highlights">
+          <div class="island-card primary-island">
+            <span>6 Islands</span>
+            <strong>Quiz Battles</strong>
+          </div>
+          <div class="hero-stat-row">
+            <div class="summary-card">
+              <span>Built With</span>
+              <strong>Godot 4</strong>
+            </div>
+            <div class="summary-card">
+              <span>Audience</span>
+              <strong>Grade 3</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-section" id="about-game">
+        <div class="section-heading">
+          <p class="eyebrow">About the Game</p>
+          <h2>Island-based math practice with progress students can see.</h2>
+        </div>
+        <div class="info-grid">
+          <article class="info-card">
+            <span>Gameplay</span>
+            <h3>Six Islands</h3>
+            <p>Students travel across six themed islands, answering math questions and completing quiz-based battles.</p>
+          </article>
+          <article class="info-card">
+            <span>Progress</span>
+            <h3>Badges Per Island</h3>
+            <p>Each island awards a badge, giving learners a clear sense of accomplishment as they advance.</p>
+          </article>
+          <article class="info-card">
+            <span>Learning</span>
+            <h3>MATATAG-Aligned</h3>
+            <p>Designed for Grade 3 mathematics practice aligned with the MATATAG curriculum competencies.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="landing-section school-section" id="about-school">
+        <div class="section-heading">
+          <p class="eyebrow">About the School</p>
+          <h2>Master Hand School Inc.</h2>
+        </div>
+        <div class="school-layout">
+          <img src="mhsinc front.jpg" alt="Master Hand School Inc. campus frontage">
+          <div>
+            <h3>Client School</h3>
+            <p>
+              Placeholder school description: add the school address, mission, community profile,
+              and any details you would like visitors to know about Master Hand School Inc.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-section download-section" id="download">
+        <div class="section-heading">
+          <p class="eyebrow">Download</p>
+          <h2>Install the I.S.L.A. Android APK.</h2>
+        </div>
+        <a class="download-card" href="/downloads/isla.apk">
+          <span>APK Download</span>
+          <strong>I.S.L.A. Mobile Game</strong>
+          <p>File link placeholder: replace with `/downloads/isla.apk` or a Firebase Storage URL when the APK is ready.</p>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <div class="app-view auth-view" id="login-view">
+    <main class="login-shell">
+      <form class="login-card" id="login-form">
+        <a class="brand login-brand" href="#home" aria-label="Back to homepage">
+          <div class="brand-mark">IS</div>
+          <div>
+            <h1>I.S.L.A.</h1>
+            <p>Admin and teacher access</p>
+          </div>
+        </a>
+        <div>
+          <p class="eyebrow">Secure Login</p>
+          <h2>Sign in to manage accounts and questions.</h2>
+        </div>
+        <label>
+          Email
+          <input id="login-email" type="email" autocomplete="email" placeholder="teacher@example.com" required>
+        </label>
+        <label>
+          Password
+          <input id="login-password" type="password" autocomplete="current-password" placeholder="Password" required>
+        </label>
+        <p class="login-error" id="login-error" hidden></p>
+        <button class="btn btn-primary" id="login-submit" type="submit">Login</button>
+        <a class="login-back" href="#home">Back to public homepage</a>
+      </form>
+    </main>
+  </div>
+
+  <div class="app-view dashboard-view" id="admin-view">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">IS</div>
+        <div>
+          <h1>I.S.L.A.</h1>
+          <p>Instructional Sipnayan Learning Adventure</p>
+        </div>
+      </div>
+
+      <nav>
+        <p class="nav-label">Overview</p>
+        <button class="overview-btn active" data-overview="overview">Dashboard</button>
+        <button class="overview-btn" data-overview="analytics">Analytics</button>
+      </nav>
+
+      <nav>
+        <p class="nav-label">Accounts</p>
+        <button class="accounts-btn" data-accounts="student-accounts">Student Accounts</button>
+        <button class="accounts-btn" data-accounts="teacher-accounts">Teacher Accounts</button>
+      </nav>
+
+      <nav>
+        <p class="nav-label">Topics</p>
+        <button class="topic-btn" data-topic="addition">Addition</button>
+        <button class="topic-btn" data-topic="subtraction">Subtraction</button>
+        <button class="topic-btn" data-topic="multiplication">Multiplication</button>
+        <button class="topic-btn" data-topic="division">Division</button>
+        <button class="topic-btn" data-topic="fractions">Fractions</button>
+        <button class="topic-btn" data-topic="geometry">Geometry</button>
+      </nav>
+
+      <div class="connection-box">
+        <button class="btn btn-light logout-full" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Admin Panel</p>
+          <h2 id="page-title">Dashboard</h2>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-light" id="refresh-btn">Refresh</button>
+          <button class="btn btn-primary" id="add-btn">Add Question</button>
+        </div>
+      </header>
+
+      <section class="page">
+        <div class="notice" id="connect-banner">
+          Firebase is still connecting. Please wait a moment.
+        </div>
+
+      <div class="controls">
+        <label for="difficulty-select">
+          Difficulty
+          <select id="difficulty-select">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+
+        <label for="search-input">
+          Search
+          <input id="search-input" type="search" placeholder="Search question, choice, or hint">
+        </label>
+
+        <div class="summary-card">
+          <span>Total Questions</span>
+          <strong id="question-count">0</strong>
+        </div>
+      </div>
+
+      <section class="table-card">
+        <div class="table-header">
+          <h3 id="table-title">Accounts</h3>
+          <p id="doc-name">Student and teacher accounts</p>
+        </div>
+
+        <div class="table-wrap">
+          <div id="table-container">
+            Loading questions...
+          </div>
+        </div>
+      </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="question-modal">
+    <form class="modal" id="question-form">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Question</h3>
+        <button type="button" class="icon-btn" id="close-question-modal" aria-label="Close">x</button>
+      </div>
+
+      <label>
+        Question
+        <textarea id="q-question" rows="3" placeholder="Example: What is 2 + 2?"></textarea>
+      </label>
+
+      <div class="choices">
+        <p>Choices</p>
+        <label class="choice-row">
+          <input type="radio" name="correct" value="0">
+          <span>A</span>
+          <input id="choice-0" type="text" placeholder="Choice A">
+        </label>
+        <label class="choice-row">
+          <input type="radio" name="correct" value="1">
+          <span>B</span>
+          <input id="choice-1" type="text" placeholder="Choice B">
+        </label>
+        <label class="choice-row">
+          <input type="radio" name="correct" value="2">
+          <span>C</span>
+          <input id="choice-2" type="text" placeholder="Choice C">
+        </label>
+      </div>
+
+      <label>
+        Hint
+        <input id="q-hint" type="text" placeholder="Optional hint">
+      </label>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" id="cancel-question">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Question</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal small-modal">
+      <div class="modal-header">
+        <h3>Delete Question</h3>
+        <button type="button" class="icon-btn" id="close-delete-modal" aria-label="Close">x</button>
+      </div>
+      <p class="delete-copy">This will permanently delete:</p>
+      <strong id="delete-preview"></strong>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" id="cancel-delete">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="password-modal">
+    <form class="modal small-modal" id="password-form">
+      <div class="modal-header">
+        <h3>Change Password</h3>
+        <button type="button" class="icon-btn" id="close-password-modal" aria-label="Close">x</button>
+      </div>
+      <p class="delete-copy">Set a new password for:</p>
+      <strong id="password-account-preview"></strong>
+      <label>
+        New Password
+        <input id="account-new-password" type="password" autocomplete="new-password" minlength="6" placeholder="At least 6 characters">
+      </label>
+      <label>
+        Confirm Password
+        <input id="account-confirm-password" type="password" autocomplete="new-password" minlength="6" placeholder="Repeat password">
+      </label>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" id="cancel-password">Cancel</button>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast-container" id="toasts"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script type="module" src="script.js"></script>
+</body>
+</html>

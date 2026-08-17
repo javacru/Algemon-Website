@@ -1,0 +1,5 @@
+# Ignore all Firebase Admin SDK service account keys
+*-firebase-adminsdk-*.json
+
+# Ignore the service JavaScript file
+service.js
