@@ -1,0 +1,13 @@
+{
+  "name": "isla-website-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node service.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "firebase-admin": "^12.7.0"
+  }
+}

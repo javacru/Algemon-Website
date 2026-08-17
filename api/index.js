@@ -3,19 +3,28 @@ const admin = require('firebase-admin');
 const cors = require('cors');
 const crypto = require('crypto');
 
-// Prevent re-initializing on every warm invocation
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
+function adminCredential() {
+  if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_CLIENT_EMAIL && process.env.FIREBASE_PRIVATE_KEY) {
+    return admin.credential.cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    }),
+    });
+  }
+
+  return admin.credential.cert(require('../algemon-1c2bb-firebase-adminsdk-fbsvc-4d091f3dbc.json'));
+}
+
+// Prevent re-initializing on every warm invocation
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: adminCredential(),
   });
 }
 
 const db = admin.firestore();
 const app = express();
+const adminRouter = express.Router();
 
 app.use(cors());
 app.use(express.json());
@@ -292,7 +301,7 @@ async function buildAnalytics() {
   };
 }
 
-app.get('/api/admin/accounts', requireStaff, async (req, res) => {
+adminRouter.get('/accounts', requireStaff, async (req, res) => {
   try {
     const role = cleanString(req.query.role);
 
@@ -306,7 +315,7 @@ app.get('/api/admin/accounts', requireStaff, async (req, res) => {
   }
 });
 
-app.get('/api/admin/analytics', requireStaff, async (req, res) => {
+adminRouter.get('/analytics', requireStaff, async (req, res) => {
   try {
     res.json(await buildAnalytics());
   } catch (error) {
@@ -314,7 +323,7 @@ app.get('/api/admin/analytics', requireStaff, async (req, res) => {
   }
 });
 
-app.post('/api/admin/create-teacher', requireStaff, async (req, res) => {
+adminRouter.post('/create-teacher', requireStaff, async (req, res) => {
   let createdUid = null;
 
   try {
@@ -365,7 +374,7 @@ app.post('/api/admin/create-teacher', requireStaff, async (req, res) => {
   }
 });
 
-app.post('/api/admin/create-student', requireStaff, async (req, res) => {
+adminRouter.post('/create-student', requireStaff, async (req, res) => {
   let createdUid = null;
 
   try {
@@ -416,7 +425,7 @@ app.post('/api/admin/create-student', requireStaff, async (req, res) => {
   }
 });
 
-app.post('/api/admin/update-password', requireStaff, async (req, res) => {
+adminRouter.post('/update-password', requireStaff, async (req, res) => {
   try {
     const uid = cleanString(req.body.uid);
     const password = String(req.body.password || '');
@@ -445,6 +454,9 @@ app.post('/api/admin/update-password', requireStaff, async (req, res) => {
     sendRouteError(res, error);
   }
 });
+
+app.use('/api/admin', adminRouter);
+app.use('/admin', adminRouter);
 
 app.use((req, res) => {
   console.log('Unmatched route:', req.method, req.url);
